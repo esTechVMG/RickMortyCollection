@@ -15,8 +15,10 @@ class ViewController: UIViewController,UICollectionViewDelegateFlowLayout,UIColl
         required init?(coder: NSCoder) {
             super.init(coder: coder)
         }
-    
     func updateSearchResults(for searchController: UISearchController) {
+        //for n in 0...collection.numberOfItems(inSection: 0){
+        //    var cell:CharacterCell = collection.cellForItem(at: IndexPath.init(row: 0, section: n)) as! CharacterCell
+        //}
         
         return //Stub
     }
@@ -26,17 +28,6 @@ class ViewController: UIViewController,UICollectionViewDelegateFlowLayout,UIColl
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return characterList?.results.count ?? 0
     }
-    /*func downloadImage(from url: URL) {
-        print("Download Started")
-        getData(from: url) { data, response, error in
-            guard let data = data, error == nil else { return }
-            print(response?.suggestedFilename ?? url.lastPathComponent)
-            print("Download Finished")
-            DispatchQueue.main.async() { [weak self] in
-                self?.imageView.image = UIImage(data: data)
-            }
-        }
-    }*/
     func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
         URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
     }
@@ -47,24 +38,24 @@ class ViewController: UIViewController,UICollectionViewDelegateFlowLayout,UIColl
             cell.nameLabel.text = characterList?.results[indexPath.row].name
             cell.speciesLabel.text = characterList?.results[indexPath.row].species
             getData(from: URL(string: characterList!.results[indexPath.row].image)!, completion: {(dataReceived:Data?,_,_) in
-                //self.imageDataList.append(dataReceived ?? Data.init())
+                self.imageDataList.append(dataReceived ?? Data.init())
                 DispatchQueue.main.async {
                     cell.image.image = UIImage(data:dataReceived ?? Data.init())
                 }
-               
             })
-            
-            /*if let url = URL(string: (characterList?.results[indexPath.row].image)!) {
-                do {
-                    
-                    let data:Data = try Data(contentsOf: url)
-                    cell.image.image = UIImage(data: data)
-                } catch  {
-                    //Cant create
-                }
-            }*/
         }
         return cell
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+        let viewController = storyboard.instantiateViewController(identifier: "CharacterStoryboard") as! CharacterInfoViewController
+        viewController.name.text = "Nombre: " + characterList!.results[indexPath.row].name
+        viewController.image.image = UIImage(data: imageDataList[indexPath.row])
+        viewController.status.text = "Estado: " + characterList!.results[indexPath.row].status
+        viewController.gender.text = "Genero: " + characterList!.results[indexPath.row].gender
+        viewController.origin.text = characterList!.results[indexPath.row].origin.name
+        viewController.location.text = characterList!.results[indexPath.row].location.name
+        present(viewController, animated: true, completion: nil)
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.width, height: 200)
@@ -98,7 +89,16 @@ class ViewController: UIViewController,UICollectionViewDelegateFlowLayout,UIColl
         let name:String
         let url:String?
     }
-    //var imageDataList:[Data]=Array()
+    
+    var isSearchBarEmpty:Bool{
+        return searchController.searchBar.text?.isEmpty ?? true
+    }
+    
+    var isFiltering : Bool {
+        return searchController.isActive && !isSearchBarEmpty
+    }
+    
+    var imageDataList:[Data]=Array()
     var baseUrl:String = "https://rickandmortyapi.com/api/"
     let searchController = UISearchController(searchResultsController: nil)
     public var characterList:CharacterListResponse?
