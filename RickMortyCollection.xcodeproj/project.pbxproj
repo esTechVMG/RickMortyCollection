@@ -13,6 +13,7 @@
 		050338C725ABE72C00BC6CA6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 050338C525ABE72C00BC6CA6 /* Main.storyboard */; };
 		050338C925ABE72C00BC6CA6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 050338C825ABE72C00BC6CA6 /* Assets.xcassets */; };
 		050338CC25ABE72C00BC6CA6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 050338CA25ABE72C00BC6CA6 /* LaunchScreen.storyboard */; };
+		0542594F25AC0BDB00C84616 /* CharacterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0542594E25AC0BDB00C84616 /* CharacterCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		050338C825ABE72C00BC6CA6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		050338CB25ABE72C00BC6CA6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		050338CD25ABE72C00BC6CA6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0542594E25AC0BDB00C84616 /* CharacterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 				050338C125ABE72C00BC6CA6 /* SceneDelegate.swift */,
 				050338C325ABE72C00BC6CA6 /* ViewController.swift */,
 				050338C525ABE72C00BC6CA6 /* Main.storyboard */,
+				0542594E25AC0BDB00C84616 /* CharacterCell.swift */,
 				050338C825ABE72C00BC6CA6 /* Assets.xcassets */,
 				050338CA25ABE72C00BC6CA6 /* LaunchScreen.storyboard */,
 				050338CD25ABE72C00BC6CA6 /* Info.plist */,
@@ -140,6 +143,7 @@
 				050338C425ABE72C00BC6CA6 /* ViewController.swift in Sources */,
 				050338C025ABE72C00BC6CA6 /* AppDelegate.swift in Sources */,
 				050338C225ABE72C00BC6CA6 /* SceneDelegate.swift in Sources */,
+				0542594F25AC0BDB00C84616 /* CharacterCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
