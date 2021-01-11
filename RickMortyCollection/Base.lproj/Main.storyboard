@@ -35,7 +35,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rfp-oh-8cC">
-                                                    <rect key="frame" x="10" y="115" width="42" height="21"/>
+                                                    <rect key="frame" x="10" y="51" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -55,8 +55,8 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="rfp-oh-8cC" secondAttribute="bottom" constant="10" id="4Wx-6w-nqk"/>
                                                 <constraint firstItem="U1Y-yt-lX4" firstAttribute="top" secondItem="UYL-1W-RfS" secondAttribute="top" constant="10" id="Amx-dl-Oh5"/>
+                                                <constraint firstItem="rfp-oh-8cC" firstAttribute="top" secondItem="U1Y-yt-lX4" secondAttribute="bottom" constant="20" id="LBg-Wp-WjG"/>
                                                 <constraint firstAttribute="trailing" secondItem="lyW-cy-zPb" secondAttribute="trailing" constant="10" id="U2a-WR-nGN"/>
                                                 <constraint firstItem="rfp-oh-8cC" firstAttribute="leading" secondItem="UYL-1W-RfS" secondAttribute="leading" constant="10" id="VOP-Li-mEA"/>
                                                 <constraint firstItem="lyW-cy-zPb" firstAttribute="top" secondItem="UYL-1W-RfS" secondAttribute="top" constant="10" id="YR6-CK-Uqg"/>
