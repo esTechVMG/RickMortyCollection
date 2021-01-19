@@ -7,6 +7,7 @@
 
 import UIKit
 class CharacterInfoViewController: UIViewController {
+    
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var race: UILabel!
     @IBOutlet weak var image: UIImageView!
@@ -14,4 +15,13 @@ class CharacterInfoViewController: UIViewController {
     @IBOutlet weak var gender: UILabel!
     @IBOutlet weak var origin: UILabel!
     @IBOutlet weak var location: UILabel!
+    var characterInfo:RequestResponse.CharacterListResponseResult!
+    override func viewDidLoad() {
+        name.text = characterInfo.name
+        race.text = characterInfo.species
+        status.text = characterInfo.status
+        gender.text = characterInfo.gender
+        origin.text = characterInfo.origin.name
+        location.text = characterInfo.location.name
+    }
 }

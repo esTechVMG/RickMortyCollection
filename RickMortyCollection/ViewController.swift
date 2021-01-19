@@ -48,46 +48,14 @@ class ViewController: UIViewController,UICollectionViewDelegateFlowLayout,UIColl
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-        let viewController = storyboard.instantiateViewController(identifier: "CharacterStoryboard") as! CharacterInfoViewController
-        viewController.name.text = "Nombre: " + characterList!.results[indexPath.row].name
-        viewController.image.image = UIImage(data: imageDataList[indexPath.row])
-        viewController.status.text = "Estado: " + characterList!.results[indexPath.row].status
-        viewController.gender.text = "Genero: " + characterList!.results[indexPath.row].gender
-        viewController.origin.text = characterList!.results[indexPath.row].origin.name
-        viewController.location.text = characterList!.results[indexPath.row].location.name
+        
+        guard let viewController = storyboard.instantiateViewController(identifier: "CharacterStoryboard") as? CharacterInfoViewController else {return}
+        let character:RequestResponse.CharacterListResponseResult = characterList!.results[indexPath.row] as RequestResponse.CharacterListResponseResult
+        viewController.characterInfo = character
         present(viewController, animated: true, completion: nil)
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.width, height: 200)
-    }
-    
-    struct CharacterListResponse:Decodable {
-        let info:CharacterListResponseInfo
-        let results:[CharacterListResponseResult]
-    }
-    struct  CharacterListResponseInfo:Decodable{
-        let count:Int
-        let pages:Int
-        let next:String?
-        let prev:String?
-    }
-    struct  CharacterListResponseResult:Decodable {
-        let id:Int
-        let name:String
-        let status:String
-        let species:String
-        let type:String
-        let gender:String
-        let origin:InfoReference
-        let location:InfoReference
-        let image:String
-        let episode:[String]
-        let url:String
-        let created:String
-    }
-    struct InfoReference:Decodable {
-        let name:String
-        let url:String?
     }
     
     var isSearchBarEmpty:Bool{
@@ -101,7 +69,7 @@ class ViewController: UIViewController,UICollectionViewDelegateFlowLayout,UIColl
     var imageDataList:[Data]=Array()
     var baseUrl:String = "https://rickandmortyapi.com/api/"
     let searchController = UISearchController(searchResultsController: nil)
-    public var characterList:CharacterListResponse?
+    var characterList:RequestResponse.CharacterListResponse?
     override func viewWillAppear(_ animated: Bool) {
         searchInit()
         collection.delegate = self
@@ -119,7 +87,7 @@ class ViewController: UIViewController,UICollectionViewDelegateFlowLayout,UIColl
         let session = URLSession.shared
         session.dataTask(with: request) { [self] (data, response, error) in
             if let data = data {
-                let response: CharacterListResponse = try! JSONDecoder().decode(CharacterListResponse.self, from: data)
+                let response: RequestResponse.CharacterListResponse = try! JSONDecoder().decode(RequestResponse.CharacterListResponse.self, from: data)
                 self.characterList = response
                 /*for n in 0...self.characterList!.results.count-1 {
                     
