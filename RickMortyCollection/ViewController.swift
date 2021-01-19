@@ -52,6 +52,7 @@ class ViewController: UIViewController,UICollectionViewDelegateFlowLayout,UIColl
         guard let viewController = storyboard.instantiateViewController(identifier: "CharacterStoryboard") as? CharacterInfoViewController else {return}
         let character:RequestResponse.CharacterListResponseResult = characterList!.results[indexPath.row] as RequestResponse.CharacterListResponseResult
         viewController.characterInfo = character
+        viewController.imageSource = UIImage.init(data: imageDataList[indexPath.row])
         present(viewController, animated: true, completion: nil)
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

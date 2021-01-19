@@ -16,12 +16,14 @@ class CharacterInfoViewController: UIViewController {
     @IBOutlet weak var origin: UILabel!
     @IBOutlet weak var location: UILabel!
     var characterInfo:RequestResponse.CharacterListResponseResult!
+    var imageSource:UIImage!
     override func viewDidLoad() {
-        name.text = characterInfo.name
-        race.text = characterInfo.species
-        status.text = characterInfo.status
-        gender.text = characterInfo.gender
-        origin.text = characterInfo.origin.name
-        location.text = characterInfo.location.name
+        name.text = "Name: " + characterInfo.name
+        race.text = "Race: " + characterInfo.species
+        status.text = "Status: " + characterInfo.status
+        gender.text = "Gender: " + characterInfo.gender
+        origin.text = "Origin: " + characterInfo.origin.name
+        location.text = "Location: " + characterInfo.location.name
+        image.image = imageSource
     }
 }
