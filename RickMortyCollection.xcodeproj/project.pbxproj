@@ -15,6 +15,7 @@
 		050338CC25ABE72C00BC6CA6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 050338CA25ABE72C00BC6CA6 /* LaunchScreen.storyboard */; };
 		0542594F25AC0BDB00C84616 /* CharacterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0542594E25AC0BDB00C84616 /* CharacterCell.swift */; };
 		0542595225AC85AB00C84616 /* CharacterInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0542595125AC85AB00C84616 /* CharacterInfo.swift */; };
+		3005C45F25B7704900957164 /* RequestResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3005C45E25B7704900957164 /* RequestResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		050338CD25ABE72C00BC6CA6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0542594E25AC0BDB00C84616 /* CharacterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCell.swift; sourceTree = "<group>"; };
 		0542595125AC85AB00C84616 /* CharacterInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterInfo.swift; sourceTree = "<group>"; };
+		3005C45E25B7704900957164 /* RequestResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +67,7 @@
 				050338C325ABE72C00BC6CA6 /* ViewController.swift */,
 				050338C525ABE72C00BC6CA6 /* Main.storyboard */,
 				0542595125AC85AB00C84616 /* CharacterInfo.swift */,
+				3005C45E25B7704900957164 /* RequestResponse.swift */,
 				0542594E25AC0BDB00C84616 /* CharacterCell.swift */,
 				050338C825ABE72C00BC6CA6 /* Assets.xcassets */,
 				050338CA25ABE72C00BC6CA6 /* LaunchScreen.storyboard */,
@@ -143,6 +146,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3005C45F25B7704900957164 /* RequestResponse.swift in Sources */,
 				050338C425ABE72C00BC6CA6 /* ViewController.swift in Sources */,
 				050338C025ABE72C00BC6CA6 /* AppDelegate.swift in Sources */,
 				0542595225AC85AB00C84616 /* CharacterInfo.swift in Sources */,
