@@ -10,7 +10,7 @@ import Foundation
 class RequestResponse {
     struct CharacterListResponse:Decodable {
         let info:CharacterListResponseInfo
-        let results:[CharacterListResponseResult]
+        var results:[CharacterListResponseResult]
     }
     struct  CharacterListResponseInfo:Decodable{
         let count:Int
@@ -28,6 +28,7 @@ class RequestResponse {
         let origin:InfoReference
         let location:InfoReference
         let image:String
+        var imageData:Data?
         let episode:[String]
         let url:String
         let created:String
