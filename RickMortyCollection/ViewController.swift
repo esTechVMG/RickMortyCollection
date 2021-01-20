@@ -8,22 +8,13 @@
 import UIKit
 class ViewController: UIViewController,UICollectionViewDelegateFlowLayout,UICollectionViewDataSource, UISearchResultsUpdating {
     
-    //Init
-        override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-            
-            super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-            
-        }
-        required init?(coder: NSCoder) {
-            super.init(coder: coder)
-        }
     func updateSearchResults(for searchController: UISearchController) {
         let searchString = searchController.searchBar.text ?? ""
         print("Searched: \(searchString)")
         if searchString.isEmpty{
-            _characterListTemp = _characterListReal!.results
+            characterListToShow = requestResult!.results
         }else{
-            _characterListTemp = _characterListReal!.results.filter({
+            characterListToShow = requestResult!.results.filter({
                 (item:RequestResponse.CharacterListResponseResult) -> Bool in
                 return item.name.contains(searchString);
             })
@@ -35,7 +26,7 @@ class ViewController: UIViewController,UICollectionViewDelegateFlowLayout,UIColl
     @IBOutlet weak var collection: UICollectionView!
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return _characterListTemp.count
+        return characterListToShow.count
     }
     func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
         URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
@@ -43,19 +34,19 @@ class ViewController: UIViewController,UICollectionViewDelegateFlowLayout,UIColl
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CharCell", for: indexPath) as! CharacterCell
-        cell.nameLabel.text = _characterListTemp[indexPath.row].name
-        cell.speciesLabel.text = _characterListTemp[indexPath.row].species
-        cell.image.image = UIImage(data: _characterListTemp[indexPath.row].imageData!)
+        cell.nameLabel.text = characterListToShow[indexPath.row].name
+        cell.speciesLabel.text = characterListToShow[indexPath.row].species
+        cell.image.image = UIImage(data: characterListToShow[indexPath.row].imageData!)
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
         
         guard let viewController = storyboard.instantiateViewController(identifier: "CharacterStoryboard") as? CharacterInfoViewController else {return}
-        let character:RequestResponse.CharacterListResponseResult = _characterListTemp[indexPath.row] as RequestResponse.CharacterListResponseResult
+        let character:RequestResponse.CharacterListResponseResult = characterListToShow[indexPath.row] as RequestResponse.CharacterListResponseResult
         viewController.characterInfo = character
         //viewController.imageSource = UIImage.init(data: imageDataList[indexPath.row])
-        viewController.imageSource = UIImage.init(data: _characterListTemp[indexPath.row].imageData!)
+        viewController.imageSource = UIImage.init(data: characterListToShow[indexPath.row].imageData!)
         present(viewController, animated: true, completion: nil)
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -73,8 +64,8 @@ class ViewController: UIViewController,UICollectionViewDelegateFlowLayout,UIColl
     //var imageDataList:[Data]=Array()
     var baseUrl:String = "https://rickandmortyapi.com/api/"
     let searchController = UISearchController(searchResultsController: nil)
-    var _characterListReal:RequestResponse.CharacterListResponse?
-    var _characterListTemp:[RequestResponse.CharacterListResponseResult] = Array()
+    var requestResult:RequestResponse.CharacterListResponse?
+    var characterListToShow:[RequestResponse.CharacterListResponseResult] = Array()
     /*var characterListToShow:RequestResponse.CharacterListResponse{
         get{
             
@@ -99,11 +90,11 @@ class ViewController: UIViewController,UICollectionViewDelegateFlowLayout,UIColl
         URLSession.shared.dataTask(with: request) { [self] (data, response, error) in
             if let data = data {
                 let response: RequestResponse.CharacterListResponse = try! JSONDecoder().decode(RequestResponse.CharacterListResponse.self, from: data)
-                _characterListReal = response
+                requestResult = response
                 for i in 0...response.results.count-1{
                     getData(from: URL(string: response.results[i].image)!, completion: {(dataReceived:Data?,_,_) in
-                        self._characterListReal!.results[i].imageData = dataReceived
-                        _characterListTemp = _characterListReal!.results
+                        self.requestResult!.results[i].imageData = dataReceived
+                        characterListToShow = requestResult!.results
                         DispatchQueue.main.async {
                             self.collection.reloadData()
                         }
