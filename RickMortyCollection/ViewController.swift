@@ -36,7 +36,7 @@ class ViewController: UIViewController,UICollectionViewDelegateFlowLayout,UIColl
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CharCell", for: indexPath) as! CharacterCell
         cell.nameLabel.text = characterListToShow[indexPath.row].name
         cell.speciesLabel.text = characterListToShow[indexPath.row].species
-        cell.image.image = UIImage(data: characterListToShow[indexPath.row].imageData!)
+        cell.image.image = UIImage(data: characterListToShow[indexPath.row].imageData ?? Data.init())
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
