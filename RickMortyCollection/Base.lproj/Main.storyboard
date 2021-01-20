@@ -177,7 +177,7 @@
                         <outlet property="name" destination="7Vk-vV-5qW" id="XPs-qQ-Ezu"/>
                         <outlet property="origin" destination="lAu-8K-NHm" id="nPV-C6-asM"/>
                         <outlet property="race" destination="5eM-gM-Q74" id="s0P-a2-Hc8"/>
-                        <outlet property="status" destination="5eM-gM-Q74" id="zR9-R7-VRB"/>
+                        <outlet property="status" destination="EfS-Dd-be6" id="0y1-Jb-FP4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Eiz-rK-Nml" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

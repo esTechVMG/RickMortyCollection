@@ -18,7 +18,7 @@ class CharacterInfoViewController: UIViewController {
     var characterInfo:RequestResponse.CharacterListResponseResult!
     var imageSource:UIImage!
     override func viewDidLoad() {
-        name.text = "Name: " + characterInfo.name
+        name.text = characterInfo.name
         race.text = "Race: " + characterInfo.species
         status.text = "Status: " + characterInfo.status
         gender.text = "Gender: " + characterInfo.gender
