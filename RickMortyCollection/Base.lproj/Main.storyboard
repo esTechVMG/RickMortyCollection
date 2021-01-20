@@ -142,6 +142,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y4v-cO-1oz">
+                                <rect key="frame" x="125.5" y="430" width="69" height="30"/>
+                                <state key="normal" title="Compartir"/>
+                                <connections>
+                                    <action selector="shareButton:" destination="zib-8i-kDe" eventType="touchUpInside" id="EwU-PB-Ad8"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="U60-7o-cd7"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>

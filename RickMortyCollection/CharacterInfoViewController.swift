@@ -26,4 +26,15 @@ class CharacterInfoViewController: UIViewController {
         location.text = "Location: " + characterInfo.location.name
         image.image = imageSource
     }
+    @IBAction func shareButton(_ sender: Any) {
+        let textToShare = characterInfo.name
+                
+        if let myWebsite = NSURL(string: characterInfo.image) {
+        let objectsToShare: [Any] = [textToShare, myWebsite]
+        let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+
+        activityVC.popoverPresentationController?.sourceView = sender as? UIView
+        self.present(activityVC, animated: true, completion: nil)
+        }
+    }
 }
